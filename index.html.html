@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aman Kumar — LLM Post-Training Intern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0E14;
+    --panel:#131826;
+    --panel-2:#1A2033;
+    --paper:#EDEAE3;
+    --dim:#8891A3;
+    --amber:#D4A054;
+    --blue:#6EA8FE;
+    --line: rgba(237,234,227,0.09);
+    --radius: 6px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  a{color:inherit; text-decoration:none;}
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(11,14,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .logo{ font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; letter-spacing:0.01em; }
+  .logo span{ color:var(--amber); }
+  .navlinks{ display:flex; gap:32px; font-size:0.88rem; color:var(--dim); }
+  .navlinks a{ transition:color .2s ease; }
+  .navlinks a:hover{ color:var(--paper); }
+  @media (max-width:640px){ .navlinks{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding-top:64px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;
+    width:100%;
+  }
+  @media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; } .hero-curve-wrap{ order:-1; height:220px; } }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--amber);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:8px; height:8px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 3px rgba(212,160,84,0.18); }
+
+  h1{
+    font-family:'Fraunces', serif; font-weight:500;
+    font-size:clamp(2.4rem, 5.2vw, 4.1rem);
+    line-height:1.05; letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+  h1 em{ font-style:italic; color:var(--amber); font-weight:500; }
+
+  .hero-sub{
+    margin-top:24px; color:var(--dim); font-size:1.05rem; max-width:46ch;
+  }
+  .hero-actions{ margin-top:36px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:0.82rem;
+    padding:12px 22px; border-radius:var(--radius);
+    border:1px solid var(--line); transition:all .2s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{ background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:500; }
+  .btn-primary:hover{ background:#e3b06a; }
+  .btn-ghost:hover{ border-color:var(--paper); }
+
+  /* telemetry readout */
+  .telemetry{
+    margin-top:52px; display:flex; gap:36px; flex-wrap:wrap;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .telemetry .t-item .t-label{ font-size:0.7rem; color:var(--dim); text-transform:uppercase; letter-spacing:0.06em; }
+  .telemetry .t-item .t-val{ font-size:1.3rem; color:var(--paper); margin-top:4px; }
+  .telemetry .t-item .t-val .unit{ color:var(--blue); font-size:0.9rem; }
+
+  .hero-curve-wrap{ position:relative; height:420px; }
+  .hero-curve-wrap svg{ width:100%; height:100%; }
+  .curve-path{
+    fill:none; stroke:var(--amber); stroke-width:2;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.2s cubic-bezier(.2,.7,.3,1) forwards .3s;
+  }
+  .curve-path-dim{
+    fill:none; stroke:var(--blue); stroke-width:1.4; opacity:0.35;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.6s cubic-bezier(.2,.7,.3,1) forwards .5s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .curve-dot{ fill:var(--amber); opacity:0; animation:fadein .4s ease forwards 2.5s; }
+  @keyframes fadein{ to{opacity:1;} }
+  .curve-label{ font-family:'JetBrains Mono', monospace; font-size:11px; fill:var(--dim); }
+
+  /* section divider = flattening curve motif */
+  .divider{ height:64px; width:100%; }
+  .divider svg{ width:100%; height:100%; }
+  .divider path{ fill:none; stroke:var(--line); stroke-width:1.5; }
+
+  section{ padding:100px 0; position:relative; }
+  .section-head{ margin-bottom:56px; max-width:56ch; }
+  .section-tag{ font-family:'JetBrains Mono', monospace; color:var(--amber); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; }
+  h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.8rem,3.2vw,2.5rem); margin-top:10px; }
+  .lede{ color:var(--dim); margin-top:14px; font-size:1.02rem; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ color:var(--dim); margin-bottom:16px; }
+  .about-grid p strong{ color:var(--paper); font-weight:500; }
+  .stack-list{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+  .stack-pill{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+    padding:7px 13px; border:1px solid var(--line); border-radius:20px;
+    color:var(--dim);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .projects{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  @media (max-width:760px){ .projects{ grid-template-columns:1fr; } }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px; transition:transform .25s ease, border-color .25s ease;
+  }
+  .card:hover{ transform:translateY(-4px); border-color:rgba(212,160,84,0.35); }
+  .card .card-tag{ font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--blue); text-transform:uppercase; letter-spacing:0.06em; }
+  .card h3{ font-family:'Fraunces', serif; font-weight:500; font-size:1.35rem; margin-top:10px; }
+  .card p{ color:var(--dim); margin-top:12px; font-size:0.94rem; }
+  .card .card-metrics{ display:flex; gap:18px; margin-top:20px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--amber); }
+  .card .card-link{ display:inline-block; margin-top:20px; font-family:'JetBrains Mono', monospace; font-size:0.82rem; color:var(--paper); border-bottom:1px solid var(--amber); padding-bottom:2px; }
+
+  /* ---------- EXPERIENCE (real sequence -> numbered) ---------- */
+  .timeline{ position:relative; padding-left:44px; }
+  .timeline::before{ content:''; position:absolute; left:11px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .t-entry{ position:relative; padding-bottom:44px; }
+  .t-entry:last-child{ padding-bottom:0; }
+  .t-entry::before{
+    content: attr(data-n); position:absolute; left:-44px; top:0;
+    width:24px; height:24px; border-radius:50%; background:var(--panel-2); border:1px solid var(--amber);
+    color:var(--amber); font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .t-entry .t-role{ font-weight:600; font-size:1.05rem; }
+  .t-entry .t-meta{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--dim); margin-top:2px; }
+  .t-entry p{ color:var(--dim); margin-top:10px; font-size:0.94rem; max-width:60ch; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ text-align:left; }
+  .contact h2{ max-width:16ch; }
+  .contact-links{ margin-top:32px; display:flex; gap:28px; flex-wrap:wrap; }
+  .contact-links a{
+    font-family:'JetBrains Mono', monospace; font-size:0.95rem;
+    border-bottom:1px solid var(--line); padding-bottom:4px; transition:border-color .2s ease, color .2s ease;
+  }
+  .contact-links a:hover{ border-color:var(--amber); color:var(--amber); }
+
+  footer{ border-top:1px solid var(--line); padding:32px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer .mono{ font-size:0.78rem; color:var(--dim); }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">aman<span>.</span>kumar</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">MCA student · open to opportunities</div>
+      <h1>Training language models to behave better, one dataset at a time.</h1>
+      <p class="hero-sub">I'm Aman Kumar, an MCA student and LLM post-training intern working on prompt-response datasets, evaluation, and model alignment — with a frontend background to build the tools around it.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View projects →</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+      <div class="telemetry">
+        <div class="t-item">
+          <div class="t-label">internship</div>
+          <div class="t-val">4<span class="unit"> mo</span></div>
+        </div>
+        <div class="t-item">
+          <div class="t-label">focus</div>
+          <div class="t-val mono" style="font-size:1rem;">SFT · RLHF</div>
+        </div>
+        <div class="t-item">
+          <div class="t-label">based in</div>
+          <div class="t-val mono" style="font-size:1rem;">Greater Noida</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-curve-wrap">
+      <svg viewBox="0 0 360 420" preserveAspectRatio="xMidYMid meet">
+        <path class="curve-path-dim" d="M20,60 C90,90 140,180 190,220 C250,266 300,300 340,330" />
+        <path class="curve-path" d="M20,20 C70,40 110,110 150,160 C210,235 260,300 340,360" />
+        <circle class="curve-dot" cx="340" cy="360" r="4"/>
+        <text class="curve-label" x="20" y="14">loss</text>
+        <text class="curve-label" x="300" y="380">epoch 40</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><svg viewBox="0 0 1080 64" preserveAspectRatio="none"><path d="M0,32 C270,10 540,54 810,30 C930,20 1000,32 1080,28"/></svg></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">01 — about</div>
+      <h2>An MCA student learning how language models get shaped, not just how they're built.</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I spent four months at Ethara AI working on <strong>LLM post-training</strong> — creating and evaluating prompt-response datasets, annotating and validating data for quality, and contributing to model alignment. It gave me a close-up view of what actually goes into making a model reliable, well past the point where the pretraining ends.</p>
+        <p>Alongside that, I've built full-stack web tools, including a campus placement platform used to coordinate students, placement officers, and employers. I like sitting at the intersection of both: understanding how a model is trained, and being able to build the interface around it.</p>
+        <div class="stack-list">
+          <span class="stack-pill">Prompt Engineering</span>
+          <span class="stack-pill">SFT</span>
+          <span class="stack-pill">RLHF</span>
+          <span class="stack-pill">LLM Evaluation</span>
+          <span class="stack-pill">Data Annotation</span>
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">SQL</span>
+          <span class="stack-pill">HTML / CSS / JS</span>
+          <span class="stack-pill">Git</span>
+          <span class="stack-pill">WordPress</span>
+        </div>
+      </div>
+      <div>
+        <p><strong>Education</strong></p>
+        <div class="timeline" style="margin-top:16px;">
+          <div class="t-entry" data-n="●">
+            <div class="t-role">Master of Computer Applications (MCA)</div>
+            <div class="t-meta">Noida Institute of Engineering and Technology · 2024 — 2026</div>
+          </div>
+          <div class="t-entry" data-n="●">
+            <div class="t-role">Bachelor of Computer Applications (BCA)</div>
+            <div class="t-meta">Thakur Prasad Singh Patliputra University, Patna · 2020 — 2023</div>
+          </div>
+        </div>
+        <p style="margin-top:8px;"><strong>Certification</strong> — Introduction to Python, Infosys Springboard</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><svg viewBox="0 0 1080 64" preserveAspectRatio="none"><path d="M0,20 C270,50 540,10 810,40 C930,54 1000,30 1080,36"/></svg></div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">02 — projects</div>
+      <h2>What I've worked on.</h2>
+      <p class="lede">A web platform I built, and the LLM training work I've contributed to.</p>
+    </div>
+    <div class="projects">
+      <div class="card reveal">
+        <div class="card-tag">full-stack</div>
+        <h3>Campus Placement Management System</h3>
+        <p>A web-based platform that streamlines the campus recruitment process, connecting students, placement officers (TPO), and employers in one workflow.</p>
+        <div class="card-metrics"><span>HTML / CSS / JS</span><span>SQL</span></div>
+        <a href="#" class="card-link">Add link →</a>
+      </div>
+      <div class="card reveal">
+        <div class="card-tag">llm post-training</div>
+        <h3>Prompt-Response Dataset Curation — Ethara AI</h3>
+        <p>Created and evaluated high-quality prompt-response datasets for LLM training, and performed data annotation, validation, and quality checks to improve model accuracy and support alignment.</p>
+        <div class="card-metrics"><span>Prompt Engineering</span><span>SFT / RLHF</span></div>
+        <a href="#" class="card-link">Add link →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><svg viewBox="0 0 1080 64" preserveAspectRatio="none"><path d="M0,36 C270,16 540,50 810,22 C930,10 1000,34 1080,26"/></svg></div>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">03 — experience</div>
+      <h2>Where I've worked.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-entry" data-n="1">
+        <div class="t-role">LLM Post-Training Intern — Ethara AI (Green Rider Technology LLP)</div>
+        <div class="t-meta">Apr 2026 — Jul 2026 · Gurugram</div>
+        <p>Worked on LLM post-training: created and evaluated prompt-response datasets, performed data annotation and validation to improve model accuracy, and contributed to model alignment and performance optimization — gaining hands-on exposure to real-world AI pipelines and LLM workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><svg viewBox="0 0 1080 64" preserveAspectRatio="none"><path d="M0,28 C270,44 540,14 810,36 C930,46 1000,24 1080,32"/></svg></div>
+
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <div class="section-tag">04 — contact</div>
+    <h2>Let's talk about what you're building.</h2>
+    <p class="lede">Open to internships, entry-level AI/ML roles, and frontend opportunities.</p>
+    <div class="contact-links">
+      <a href="mailto:ashishsinghion85@gmail.com">ashishsinghion85@gmail.com</a>
+      <a href="tel:+918544009525">+91 85440 09525</a>
+      <a href="#">Add LinkedIn →</a>
+      <a href="#">Add GitHub →</a>
+      <a href="#">Download résumé ↓</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© 2026 Aman Kumar</span>
+    <span class="mono">Greater Noida, Uttar Pradesh</span>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12 });
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
